@@ -55,17 +55,16 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount }: Functiona
 
   return (
     <div id="game-board">
-      {setCorrectCount(correctCount + 1)}
-      {` correct count: ${correctCount}`}
-      {` fishName: ${fishName}`}
-      {` should match: ${nextFishToName.name}`}
-      {` fishState: ${fishState}`}
+      {` correct count: ${correctCount} `}
+      {` Does fishName: ${fishName} === ${nextFishToName.name} `}
+      {` should match: ${nextFishToName.name} `}
+      {` fishState: ${fishState} `}
       <div id="fish-container">
         <img src={nextFishToName.url} alt={nextFishToName.name} />
       </div>
       <form
         id="fish-guess-form"
-        onSubmit={checkGuess}
+        
 
         >
         <label htmlFor="fish-guess">What kind of fish is this?</label>
@@ -82,6 +81,7 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount }: Functiona
 
           onClick={(e) => {
             e.preventDefault()
+            checkGuess()
             setFishState(fishState + 1)
             setFishName('')
           }} />
