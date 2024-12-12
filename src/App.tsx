@@ -1,15 +1,34 @@
+import { useState } from "react";
 import "./App.css";
 import { ClassApp } from "./Components/Class/ClassApp";
 import { FunctionalApp } from "./Components/Functional/FunctionalApp";
 
+// export function IncorrectFuncStateSet() {
+//   const [funcIncorrectState, setFuncIncorrectState]= useState(0)
+
+//   const ifWrong = () => {
+//     setFuncIncorrectState(funcIncorrectState + 1)
+//   }
+// }
+
+// export function CorrectFuncStateSet() {
+
+
+//   const ifCorrect = () => {
+//     setFuncCorrectState(funcCorrectState + 1)
+//   }
+// }
+
 function App() {
+
+
   return (
     <div className="App">
       <h1>Name That Fish</h1>
       <div className="split">
         <div className="left">
           <h3>Functional</h3>
-          <FunctionalApp />
+          <FunctionalApp  />
         </div>
         <div className="right">
           <h3>Class</h3>
@@ -19,5 +38,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;

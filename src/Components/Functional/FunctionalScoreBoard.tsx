@@ -5,7 +5,12 @@ const incorrectCount = 0;
 const correctCount = 0;
 const answersLeft = ["trout", "salmon", "tuna", "shark"];
 
-export function FunctionalScoreBoard() {
+interface CountProps {
+  incorrectCount: number,
+  correctCount: number,
+}
+
+export function FunctionalScoreBoard({incorrectCount, correctCount}: CountProps) {
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectCount}</div>
