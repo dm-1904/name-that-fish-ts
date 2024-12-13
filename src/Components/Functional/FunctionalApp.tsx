@@ -6,10 +6,9 @@ import { useState } from "react";
 export function FunctionalApp() {
   const [correctCount, setCorrectCount] = useState<number>(0);
   const [incorrectCount, setIncorrectCount] = useState<number>(0);
-
+  const totalCount = correctCount + incorrectCount
   return (
     <>
-    {`correct guesses: ${correctCount}`}
       <FunctionalScoreBoard
       correctCount={correctCount}
       incorrectCount={incorrectCount}
@@ -20,7 +19,11 @@ export function FunctionalApp() {
       setIncorrectCount={setIncorrectCount}
       incorrectCount={incorrectCount}
       />
-      {false && <FunctionalFinalScore />}
+      {totalCount}
+      <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} />
+      {totalCount < 4 ?
+        false && <FunctionalFinalScore /> :
+        true && <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} /> }
     </>
   );
 }
