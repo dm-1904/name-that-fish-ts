@@ -17,6 +17,8 @@ export function FunctionalApp() {
       <FunctionalGameBoard
       setCorrectCount={setCorrectCount}
       correctCount={correctCount}
+      setIncorrectCount={setIncorrectCount}
+      incorrectCount={incorrectCount}
       />
       {false && <FunctionalFinalScore />}
     </>

@@ -3,8 +3,10 @@ import { Images } from "../../assets/Images";
 import { useState } from "react";
 
 interface FunctionalGameBoardProps {
-  setCorrectCount: (number: number) => any,
+  setCorrectCount: (number: number) => void,
   correctCount: number,
+  setIncorrectCount: (number: number) => void,
+  incorrectCount: number,
 }
 
 interface NextFishToName {
@@ -35,7 +37,7 @@ const initialFishes = [
   },
 ];
 
-export function FunctionalGameBoard({ setCorrectCount, correctCount }: FunctionalGameBoardProps) {
+export function FunctionalGameBoard({ setCorrectCount, correctCount, setIncorrectCount, incorrectCount }: FunctionalGameBoardProps) {
   const [fishState, setFishState] = useState(0)
   const [fishName, setFishName] = useState('')
 
@@ -49,24 +51,19 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount }: Functiona
     if (fishName === nextFishToName.name) {
       setCorrectCount(correctCount + 1)
       nextFishToName = initialFishes[+1]
+    } else {
+      setIncorrectCount(incorrectCount + 1)
+      nextFishToName = initialFishes[+1]
     }
   }
 
 
   return (
     <div id="game-board">
-      {` correct count: ${correctCount} `}
-      {` Does fishName: ${fishName} === ${nextFishToName.name} `}
-      {` should match: ${nextFishToName.name} `}
-      {` fishState: ${fishState} `}
       <div id="fish-container">
         <img src={nextFishToName.url} alt={nextFishToName.name} />
       </div>
-      <form
-        id="fish-guess-form"
-        
-
-        >
+      <form id="fish-guess-form">
         <label htmlFor="fish-guess">What kind of fish is this?</label>
         <input
           type="text"
@@ -78,7 +75,6 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount }: Functiona
           />
         <input
           type="submit"
-
           onClick={(e) => {
             e.preventDefault()
             checkGuess()
