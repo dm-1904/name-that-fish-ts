@@ -27,8 +27,10 @@ const initialFishes = [
 ];
 
 interface ClassGameBoardProps {
-  updateState: (num: number) => void,
+  updateStateCorrect: () => void,
   correctCount: number,
+  updateStateIncorrect: () => void,
+  incorrectCount: number, 
 }
 
 interface ClassGameBoardState {

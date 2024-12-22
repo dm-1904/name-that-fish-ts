@@ -42,7 +42,7 @@ export class ClassApp extends Component {
     return (
       <>
         <>
-          {`correct ${this.state.correctCount} `}
+          {/* {`correct ${this.state.correctCount} `} */}
           {/* {console.log(this.props.setCorrectCount(5))} */}
           <ClassScoreBoard
           correctCount={this.state.correctCount}
@@ -55,10 +55,9 @@ export class ClassApp extends Component {
           incorrectCount={this.state.incorrectCount}
           />
         </>
-        {false && <ClassFinalScore />}
+        {/* {false && <ClassFinalScore />} */}
         <ClassFinalScore
         correctCount={this.state.correctCount}
-        // totalCount={this.totalCount}
         incorrectCount={this.state.incorrectCount}
         />
       </>

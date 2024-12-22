@@ -20,9 +20,9 @@ export function FunctionalApp() {
       incorrectCount={incorrectCount}
       />
       <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} />
-      {totalCount < 4 ?
+      {/* {totalCount < 4 ?
         false && <FunctionalFinalScore /> :
-        true && <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} /> }
+        true && <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} /> } */}
     </>
   );
 }

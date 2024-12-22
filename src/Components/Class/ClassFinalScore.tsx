@@ -1,7 +1,11 @@
 import { Component } from "react";
 
+interface ClassFinalScoreProps {
+  correctCount: number,
+  incorrectCount: number,
+}
 
-export class ClassFinalScore extends Component {
+export class ClassFinalScore extends Component<ClassFinalScoreProps> {
   render() {
     return (
       <div id="final-score">
