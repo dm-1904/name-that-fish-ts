@@ -18,7 +18,7 @@ export function FunctionalScoreBoard({incorrectCount, correctCount}: CountProps)
           <div key={answer} className="choice">
             {answer}
           </div>
-        ))}
+        )).slice(correctCount + incorrectCount)}
       </div>
       <div>Correct ✅: {correctCount}</div>
     </div>

@@ -20,7 +20,7 @@ export class ClassScoreBoard extends Component<ClassScoreBoardProps> {
             <div key={answer} className="choice">
               {answer}
             </div>
-          ))}
+          )).slice(this.props.correctCount + this.props.incorrectCount)}
         </div>
         <div>Correct ✅: {this.props.correctCount}</div>
       </div>
