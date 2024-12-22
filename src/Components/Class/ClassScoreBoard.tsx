@@ -11,7 +11,6 @@ interface ClassScoreBoardProps {
 
 export class ClassScoreBoard extends Component<ClassScoreBoardProps> {
   render() {
-    // console.log(`test ${this.props.correctCount}`)
     return (
       <div id="score-board">
         <div>Incorrect 🔻: {this.props.incorrectCount}</div>

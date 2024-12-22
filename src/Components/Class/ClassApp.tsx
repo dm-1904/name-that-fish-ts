@@ -3,26 +3,11 @@ import { ClassScoreBoard } from "./ClassScoreBoard";
 import { ClassGameBoard } from "./ClassGameBoard";
 import { ClassFinalScore } from "./ClassFinalScore";
 
-// export default function App() {
-//   const [correctCount, setCorrectCount] = useState<number>(0);
-//   const [incorrectCount, setIncorrectCount] = useState<number>(0);
-//   return (
-//     <div className="App">
-
-//       <ClassApp setCorrectCount={setCorrectCount} />
-//     </div>
-//   )
-// }
-
-
-
 export class ClassApp extends Component {
   state = {
     incorrectCount: 0,
     correctCount: 0,
   };
-
-  // totalCount: number = this.state.correctCount + this.state.incorrectCount
 
   updateStateIncorrect = () => {
     this.setState({
@@ -37,29 +22,24 @@ export class ClassApp extends Component {
   }
 
   render() {
-
-
     return (
       <>
         <>
-          {/* {`correct ${this.state.correctCount} `} */}
-          {/* {console.log(this.props.setCorrectCount(5))} */}
-          <ClassScoreBoard
+         {this.state.correctCount + this.state.incorrectCount < 4 && <ClassScoreBoard
           correctCount={this.state.correctCount}
           incorrectCount={this.state.incorrectCount}
-          />
-          <ClassGameBoard
+          />}
+         {this.state.correctCount + this.state.incorrectCount < 4 && <ClassGameBoard
           updateStateCorrect={this.updateStateCorrect}
           correctCount={this.state.correctCount}
           updateStateIncorrect={this.updateStateIncorrect}
           incorrectCount={this.state.incorrectCount}
-          />
+          />}
         </>
-        {/* {false && <ClassFinalScore />} */}
-        <ClassFinalScore
+        {this.state.correctCount + this.state.incorrectCount === 4 && <ClassFinalScore
         correctCount={this.state.correctCount}
         incorrectCount={this.state.incorrectCount}
-        />
+        />}
       </>
     );
   }

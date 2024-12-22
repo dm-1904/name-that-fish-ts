@@ -1,5 +1,4 @@
 import "./styles/score-board.css";
-//  Where the score is presented
 
 
 const answersLeft = ["trout", "salmon", "tuna", "shark"];

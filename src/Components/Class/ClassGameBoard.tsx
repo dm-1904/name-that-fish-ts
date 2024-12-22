@@ -30,7 +30,7 @@ interface ClassGameBoardProps {
   updateStateCorrect: () => void,
   correctCount: number,
   updateStateIncorrect: () => void,
-  incorrectCount: number, 
+  incorrectCount: number,
 }
 
 interface ClassGameBoardState {
@@ -48,7 +48,6 @@ export class ClassGameBoard extends Component<ClassGameBoardProps, ClassGameBoar
     fishState: 0,
     fishName: '',
   }
-  // {console.log(this.state.fishState)}
 
   setFishState = (num: number): void => {
     this.setState({
@@ -62,23 +61,23 @@ export class ClassGameBoard extends Component<ClassGameBoardProps, ClassGameBoar
     })
   }
 
-
-
   render() {
-    // console.log(this.state.fishName)
     const nextFishToName: NextFishToName = initialFishes[this.state.fishState];
     const checkGuess = () => {
       if (this.state.fishName === nextFishToName.name) {
-        this.props.updateStateCorrect(/*correctCount + 1*/)
+        this.props.updateStateCorrect()
       } else {
-        this.props.updateStateIncorrect(/*incorrectCount + 1*/)
+        this.props.updateStateIncorrect()
       }
     }
     return (
       <div id="game-board">
         <div id="fish-container">
-          <img src={nextFishToName.url} alt={nextFishToName.name} />
-
+        {nextFishToName ? (
+        <img src={nextFishToName.url} alt={nextFishToName.name} />
+      ) : (
+        <></>
+      )}
         </div>
         <form id="fish-guess-form">
           <label htmlFor="fish-guess">What kind of fish is this?</label>
@@ -101,8 +100,6 @@ export class ClassGameBoard extends Component<ClassGameBoardProps, ClassGameBoar
                 fishName: '',
                 fishState: this.state.fishState + 1
               })
-              // this.setFishState(this.state.fishState + 1)
-              // this.setFishName('')
             }}
           />
         </form>

@@ -13,10 +13,6 @@ interface NextFishToName {
   name: string,
   url: string,
 }
-// interface FishState {
-//   fishState: number,
-//   setFishState: React.Dispatch<React.SetStateAction<number>>
-// }
 
 const initialFishes = [
   {
@@ -43,25 +39,24 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount, setIncorrec
 
   let nextFishToName: NextFishToName = initialFishes[fishState];
 
-
-
-
   function checkGuess() {
-
     if (fishName === nextFishToName.name) {
-      setCorrectCount(correctCount + 1)
-      nextFishToName = initialFishes[+1]
+      setCorrectCount(correctCount + 1);
+      nextFishToName = initialFishes[+1];
     } else {
-      setIncorrectCount(incorrectCount + 1)
-      nextFishToName = initialFishes[+1]
+      setIncorrectCount(incorrectCount + 1);
+      nextFishToName = initialFishes[+1];
     }
   }
-
 
   return (
     <div id="game-board">
       <div id="fish-container">
+      {nextFishToName ? (
         <img src={nextFishToName.url} alt={nextFishToName.name} />
+      ) : (
+        <></>
+      )}
       </div>
       <form id="fish-guess-form">
         <label htmlFor="fish-guess">What kind of fish is this?</label>
@@ -81,12 +76,7 @@ export function FunctionalGameBoard({ setCorrectCount, correctCount, setIncorrec
             setFishState(fishState + 1)
             setFishName('')
           }} />
-
       </form>
     </div>
   );
 }
-
-
-// 1) How do we type props in TS?
-// 2) Now that your component has the setter, how do we create logic around using it?

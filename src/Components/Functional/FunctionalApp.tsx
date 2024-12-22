@@ -9,22 +9,20 @@ export function FunctionalApp() {
   const totalCount: number = correctCount + incorrectCount
   return (
     <>
-      <FunctionalScoreBoard
+      {totalCount < 4 && <FunctionalScoreBoard
       correctCount={correctCount}
       incorrectCount={incorrectCount}
-      />
-      <FunctionalGameBoard
+      />}
+      {totalCount < 4 && <FunctionalGameBoard
       setCorrectCount={setCorrectCount}
       correctCount={correctCount}
       setIncorrectCount={setIncorrectCount}
       incorrectCount={incorrectCount}
-      />
-      <FunctionalFinalScore
-        correctCount={correctCount}
-        totalCount={totalCount} />
-      {/* {totalCount < 4 ?
-        false && <FunctionalFinalScore /> :
-        true && <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} /> } */}
+      />}
+      {totalCount === 4 && <FunctionalFinalScore
+      correctCount={correctCount}
+      totalCount={totalCount}
+      />}
     </>
   );
 }
