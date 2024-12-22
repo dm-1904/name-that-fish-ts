@@ -19,7 +19,6 @@ export function FunctionalApp() {
       setIncorrectCount={setIncorrectCount}
       incorrectCount={incorrectCount}
       />
-      {totalCount}
       <FunctionalFinalScore correctCount={correctCount} totalCount={totalCount} />
       {totalCount < 4 ?
         false && <FunctionalFinalScore /> :
