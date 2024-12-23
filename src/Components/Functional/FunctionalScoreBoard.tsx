@@ -1,14 +1,13 @@
 import "./styles/score-board.css";
 
 
-const answersLeft = ["trout", "salmon", "tuna", "shark"];
-
 interface CountProps {
   incorrectCount: number,
   correctCount: number,
+  answersLeft: string[],
 }
 
-export function FunctionalScoreBoard({incorrectCount, correctCount}: CountProps) {
+export function FunctionalScoreBoard({incorrectCount, correctCount, answersLeft}: CountProps) {
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectCount}</div>
