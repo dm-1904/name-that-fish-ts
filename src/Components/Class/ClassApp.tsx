@@ -2,6 +2,7 @@ import { Component } from "react";
 import { ClassScoreBoard } from "./ClassScoreBoard";
 import { ClassGameBoard } from "./ClassGameBoard";
 import { ClassFinalScore } from "./ClassFinalScore";
+import { initialFishes } from "../constants/fishData";
 
 export class ClassApp extends Component {
   state = {
@@ -9,36 +10,40 @@ export class ClassApp extends Component {
     correctCount: 0,
   };
 
-  updateStateIncorrect = () => {
-    this.setState({
-      incorrectCount: this.state.incorrectCount +1
-    })
-  }
+  totalCount: number = initialFishes.length
+  fishIndex = 0
+  isGameOver: boolean = this.fishIndex === initialFishes.length
+  answersLeft: string[] = initialFishes.map((el) => el.name)
 
-  updateStateCorrect = () => {
+  checkGuess = (name: string) => {
+    const append = name === initialFishes[this.fishIndex].name ? [1, 0] : [0, 1]
       this.setState({
-       correctCount: this.state.correctCount +1
+        correctCount: this.state.correctCount + append[0],
+        incorrectCount: this.state.incorrectCount + append[1]
       })
   }
 
   render() {
+    {this.fishIndex = this.state.correctCount + this.state.incorrectCount}
+    {this.isGameOver = this.fishIndex === initialFishes.length}
     return (
       <>
-        <>
-         {this.state.correctCount + this.state.incorrectCount < 4 && <ClassScoreBoard
+        {!this.isGameOver && (
+          <>
+            <ClassScoreBoard
+              correctCount={this.state.correctCount}
+              incorrectCount={this.state.incorrectCount}
+              answersLeft={this.answersLeft}
+            />
+            <ClassGameBoard
+              checkGuess={this.checkGuess}
+              fishData={initialFishes[this.fishIndex]}
+              />
+          </>
+        )}
+        {this.isGameOver && <ClassFinalScore
           correctCount={this.state.correctCount}
-          incorrectCount={this.state.incorrectCount}
-          />}
-         {this.state.correctCount + this.state.incorrectCount < 4 && <ClassGameBoard
-          updateStateCorrect={this.updateStateCorrect}
-          correctCount={this.state.correctCount}
-          updateStateIncorrect={this.updateStateIncorrect}
-          incorrectCount={this.state.incorrectCount}
-          />}
-        </>
-        {this.state.correctCount + this.state.incorrectCount === 4 && <ClassFinalScore
-        correctCount={this.state.correctCount}
-        incorrectCount={this.state.incorrectCount}
+          totalCount={this.totalCount}
         />}
       </>
     );
