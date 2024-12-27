@@ -8,29 +8,35 @@ interface ClassGameBoardProps {
 }
 
 interface ClassGameBoardState {
-  fishName: string,
+  fishName: string;
 }
 
-export class ClassGameBoard extends Component<ClassGameBoardProps, ClassGameBoardState> {
+export class ClassGameBoard extends Component<
+  ClassGameBoardProps,
+  ClassGameBoardState
+> {
   state = {
-    fishName: '',
-  }
+    fishName: "",
+  };
 
-  setFishName = (str: string): void => {
+  setFishName = (value: string): void => {
     this.setState({
-      fishName: this.state.fishName
-    })
-  }
+      fishName: value,
+    });
+  };
 
   render() {
     return (
       <div id="game-board">
         <div id="fish-container">
-        {this.props.fishData ? (
-        <img src={this.props.fishData.url} alt={this.props.fishData.name} />
-      ) : (
-        <></>
-      )}
+          {this.props.fishData ? (
+            <img
+              src={this.props.fishData.url}
+              alt={this.props.fishData.name}
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <form id="fish-guess-form">
           <label htmlFor="fish-guess">What kind of fish is this?</label>
@@ -40,18 +46,18 @@ export class ClassGameBoard extends Component<ClassGameBoardProps, ClassGameBoar
             value={this.state.fishName}
             onChange={(e) => {
               this.setState({
-                fishName: e.target.value
-              })
+                fishName: e.target.value,
+              });
             }}
-            />
+          />
           <input
             type="submit"
             onClick={(e) => {
-              e.preventDefault()
-              this.props.checkGuess(this.state.fishName)
+              e.preventDefault();
+              this.props.checkGuess(this.state.fishName);
               this.setState({
-                fishName: '',
-              })
+                fishName: "",
+              });
             }}
           />
         </form>

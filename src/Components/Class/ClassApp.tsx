@@ -10,41 +10,46 @@ export class ClassApp extends Component {
     correctCount: 0,
   };
 
-  totalCount: number = initialFishes.length
-  fishIndex = 0
-  isGameOver: boolean = this.fishIndex === initialFishes.length
-  answersLeft: string[] = initialFishes.map((el) => el.name)
-
   checkGuess = (name: string) => {
-    const append = name === initialFishes[this.fishIndex].name ? [1, 0] : [0, 1]
-      this.setState({
-        correctCount: this.state.correctCount + append[0],
-        incorrectCount: this.state.incorrectCount + append[1]
-      })
-  }
+    const append =
+      name ===
+      initialFishes[this.state.correctCount + this.state.incorrectCount].name
+        ? [1, 0]
+        : [0, 1];
+    this.setState({
+      correctCount: this.state.correctCount + append[0],
+      incorrectCount: this.state.incorrectCount + append[1],
+    });
+  };
 
   render() {
-    {this.fishIndex = this.state.correctCount + this.state.incorrectCount}
-    {this.isGameOver = this.fishIndex === initialFishes.length}
+    const fishIndex = this.state.correctCount + this.state.incorrectCount;
+    const totalCount: number = initialFishes.length;
+    const isGameOver: boolean = fishIndex === initialFishes.length;
+    const answersLeft: string[] = initialFishes
+      .map((el) => el.name)
+      .slice(fishIndex);
     return (
       <>
-        {!this.isGameOver && (
+        {!isGameOver && (
           <>
             <ClassScoreBoard
               correctCount={this.state.correctCount}
               incorrectCount={this.state.incorrectCount}
-              answersLeft={this.answersLeft}
+              answersLeft={answersLeft}
             />
             <ClassGameBoard
               checkGuess={this.checkGuess}
-              fishData={initialFishes[this.fishIndex]}
-              />
+              fishData={initialFishes[fishIndex]}
+            />
           </>
         )}
-        {this.isGameOver && <ClassFinalScore
-          correctCount={this.state.correctCount}
-          totalCount={this.totalCount}
-        />}
+        {isGameOver && (
+          <ClassFinalScore
+            correctCount={this.state.correctCount}
+            totalCount={totalCount}
+          />
+        )}
       </>
     );
   }

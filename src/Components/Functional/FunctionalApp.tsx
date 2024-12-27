@@ -11,7 +11,7 @@ export function FunctionalApp() {
   const totalCount: number = initialFishes.length
   const fishIndex: number = correctCount + incorrectCount
   const isGameOver: boolean = fishIndex === initialFishes.length
-  const answersLeft: string[] = initialFishes.map((el) => el.name)
+  const answersLeft: string[] = initialFishes.map((el) => el.name).slice(fishIndex)
 
   function checkGuess(name: string) {
     const append: number[] = name === initialFishes[fishIndex].name ? [1, 0] : [0, 1]

@@ -1,8 +1,8 @@
 import { Component } from "react";
 
 interface ClassFinalScoreProps {
-  correctCount: number,
-  totalCount: number,
+  correctCount: number;
+  totalCount: number;
 }
 
 export class ClassFinalScore extends Component<ClassFinalScoreProps> {

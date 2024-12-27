@@ -7,21 +7,16 @@ interface FunctionalGameBoardProps {
   fishData: Fish;
 }
 
-
-
-
-
-export function FunctionalGameBoard({ checkGuess, fishData }: FunctionalGameBoardProps) {
-  const [fishName, setFishName] = useState('')
+export function FunctionalGameBoard({
+  checkGuess,
+  fishData,
+}: FunctionalGameBoardProps) {
+  const [fishName, setFishName] = useState("");
 
   return (
     <div id="game-board">
       <div id="fish-container">
-      {fishData ? (
-        <img src={fishData.url} alt={fishData.name} />
-      ) : (
-        <></>
-      )}
+        {fishData && <img src={fishData.url} alt={fishData.name} />}
       </div>
       <form id="fish-guess-form">
         <label htmlFor="fish-guess">What kind of fish is this?</label>
@@ -30,16 +25,17 @@ export function FunctionalGameBoard({ checkGuess, fishData }: FunctionalGameBoar
           name="fish-guess"
           value={fishName}
           onChange={(e) => {
-            setFishName(e.target.value)
+            setFishName(e.target.value);
           }}
-          />
+        />
         <input
           type="submit"
           onClick={(e) => {
-            e.preventDefault()
-            checkGuess(fishName)
-            setFishName('')
-          }} />
+            e.preventDefault();
+            checkGuess(fishName);
+            setFishName("");
+          }}
+        />
       </form>
     </div>
   );
